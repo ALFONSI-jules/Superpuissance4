@@ -118,16 +118,19 @@ public void tasserGrille(int a,int b){
     }
 }
 
-public boolean colonneRemplie(){
-    for (int i=0;i<6;i++){
-        for (int j=0;j<7;j++){
-            if (Cellules[i][j]==null){
-                return false;
-            }
-        }
-        
+public boolean colonneRemplie(int a){
+    if (Cellules[0][a]==null){
+        return false;
+    }else{
+        return true;
     }
-    return true;
+        
+            
+            
+        
+        
+    
+    
 }
 public boolean placerDesintegrateur(int a,int b){
     if (Cellules[a][b].presenceDesintegrateur()==false){
