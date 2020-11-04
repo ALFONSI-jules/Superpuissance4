@@ -13,9 +13,11 @@ public class SuperPuissance4_ALFONSI_BOUTON {
 
     /**
      * @param args the command line arguments
-     */
+     */ 
     public static void main(String[] args) {
         // TODO code application logic here
+        Partie une_partie=new Partie();
+        une_partie.debuterPartie();
     }
     
 }

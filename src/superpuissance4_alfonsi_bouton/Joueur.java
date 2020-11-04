@@ -31,6 +31,7 @@ public boolean ajouterJeton(Jeton par_jeton){
     }
     else{
         ListeJetons[nombreJetonsRestants]=par_jeton ;
+        nombreJetonsRestants++;
         return true;
     }
         

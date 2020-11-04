@@ -7,6 +7,7 @@
 package superpuissance4_alfonsi_bouton;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -23,9 +24,15 @@ public void attribuerCouleursAuxJoueurs(){
     ListeJoueurs[1].affecterCouleur("jaune");
 }
 public void initialiserPartie(){
-    grillepuissance4.viderGrille();
+    Scanner sc = new Scanner(System.in);
     Random generateurAleat = new Random();
     
+    System.out.println("saisir pseudo J1 : ");
+    Joueur joueur1=new Joueur(sc.nextLine());
+    System.out.println("saisir pseudo J2 : ");
+    Joueur joueur2=new Joueur(sc.nextLine());
+    ListeJoueurs[0]=joueur1;
+    ListeJoueurs[1]=joueur2;
     for (int i=1; i<4;i++){
         int nbaleat1=generateurAleat.nextInt(5);
         int nbaleat2=generateurAleat.nextInt(6);
@@ -38,13 +45,35 @@ public void initialiserPartie(){
     }
     
     for (int i=0;i<21;i++){
-        ListeJoueurs[0].ajouterJeton(new Jeton(ListeJoueurs[0].Couleur));
-        ListeJoueurs[1].ajouterJeton(new Jeton(ListeJoueurs[1].Couleur));
+        joueur1.ajouterJeton(new Jeton(joueur1.Couleur));
+        joueur2.ajouterJeton(new Jeton(joueur2.Couleur));
         
     }
+    
+    joueurCourant=joueur1;
     grillepuissance4.afficherGrilleSurConsole();
 }
 public void debuterPartie(){
-        
+    initialiserPartie();
+    int choix;
+    Scanner sc = new Scanner(System.in);
+    do{
+        System.out.println(joueurCourant.nombreJetonsRestants);
+        System.out.println("Que voulez vous faire?");
+        System.out.println("1/ placer un jeton");
+        System.out.println("2/ désintégrer un jeton");
+        System.out.println("3/ récupérer un jeton ");
+        choix = sc.nextInt(); 
+            switch (choix) {
+                case 1 :
+                    int colonne = sc.nextInt();
+                   
+                    grillepuissance4.ajouterJetonDansColonne(joueurCourant.ListeJetons[joueurCourant.nombreJetonsRestants-1], colonne-1);
+                    joueurCourant.nombreJetonsRestants=joueurCourant.nombreJetonsRestants-1;
+                    System.out.println(joueurCourant.nombreJetonsRestants);
+                    grillepuissance4.afficherGrilleSurConsole();
+                    break;
+            }
+    }while (choix==1);
 }
 }

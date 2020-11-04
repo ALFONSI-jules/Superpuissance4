@@ -12,14 +12,23 @@ package superpuissance4_alfonsi_bouton;
 public class Grille {
     Cellule [][] Cellules = new Cellule [6][7];
     
-public boolean ajouterJetonDansColonne(Jeton par_jeton2, int nbcolonne){
-    for (int i=0;i<6;i++){
-        if (Cellules [i][nbcolonne]==null){
-            Cellules[i][nbcolonne].affecterJeton(par_jeton2);
-            return true;
+    Grille(){
+            for (int i=0;i<6;i++){
+                for (int j=0;j<7;j++){
+                    Cellules[i][j]=new Cellule();
+            }
         }
-        
-    } return false;
+    }
+public boolean ajouterJetonDansColonne(Jeton par_jeton2, int nbcolonne){
+    if(colonneRemplie(nbcolonne)) {
+        return false;
+    }
+    int indice=5;
+    while(Cellules[indice][nbcolonne].jetonCourant!=null){
+        indice--;
+    }
+    Cellules[indice][nbcolonne].jetonCourant=par_jeton2;
+    return true;
 }
 
 public boolean etreRemplie(){
@@ -46,13 +55,13 @@ public void afficherGrilleSurConsole(){
     for (int i=0;i<6;i++){
         for (int j=0;j<7;j++){
             if (Cellules[i][j].desintegrateur==true){
-                System.out.print("D");
+                System.out.print(" D ");
             }
             else if (Cellules[i][j].trouNoir==true){
-                System.out.print("TN");
+                System.out.print(" T ");
             }
             else if (Cellules[i][j].jetonCourant==null){
-                System.out.print("N");
+                System.out.print(" N ");
             }
             else{
                 System.out.print(Cellules[i][j].jetonCourant);
@@ -119,7 +128,7 @@ public void tasserGrille(int a,int b){
 }
 
 public boolean colonneRemplie(int a){
-    if (Cellules[0][a]==null){
+    if (Cellules[0][a].jetonCourant==null){
         return false;
     }else{
         return true;
@@ -162,9 +171,7 @@ public boolean supprimerJeton(int a,int b){
 }
 
 public Jeton recupererJeton(int a, int b){
-    Jeton ref=Cellules[a][b].jetonCourant;
-    Cellules[a][b].supprimerJeton();
-    return ref;  
+    return Cellules[a][b].recupererJeton();
 }
 }
 
