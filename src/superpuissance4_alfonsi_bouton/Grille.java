@@ -95,27 +95,7 @@ public String lireCouleurDuJeton(int a,int b){
 
 public boolean etreGagnantePourJoueur(Joueur nom){
      
-    String recup_couleur=nom.Couleur;
-    /*for (int i=0;i<3;i++){
-        for (int j=0;j<7;j++){
-            System.out.println(Cellules[i][j].lireCouleurDuJeton());
-        }
-    }
-    for (int i=0;i<6;i++){
-        for (int j=0;j<4;j++){
-            System.out.println(Cellules[i][j].lireCouleurDuJeton());
-        }
-    }
-    for (int i=0;i<3;i++){
-        for (int j=0;j<4;j++){
-            System.out.println(Cellules[i][j].lireCouleurDuJeton());
-        }
-    }
-    for (int i=0;i<3;i++){
-        for (int j=6;j<3;j--){
-            System.out.println(Cellules[i][j].lireCouleurDuJeton());
-        }
-    }*/
+    String recup_couleur=nom.Couleur;   
     for (int i=0;i<3;i++){
         for (int j=0;j<7;j++){
             if((Cellules[i][j].lireCouleurDuJeton()).equals(Cellules[i+1][j].lireCouleurDuJeton()) && (Cellules[i+1][j].lireCouleurDuJeton()).equals(Cellules[i+2][j].lireCouleurDuJeton()) && (Cellules[i+2][j].lireCouleurDuJeton()).equals(Cellules[i+3][j].lireCouleurDuJeton())&& Cellules[i+1][j].lireCouleurDuJeton().equals(recup_couleur)){

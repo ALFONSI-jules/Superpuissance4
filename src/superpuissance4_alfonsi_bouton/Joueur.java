@@ -51,5 +51,6 @@ public boolean utiliserDesintegrateur(){
         nombreDesintegrateurs=nombreDesintegrateurs-1;
         return true;    
     }
-} 
+}
+
 }

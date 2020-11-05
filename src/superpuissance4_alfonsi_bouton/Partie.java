@@ -55,9 +55,11 @@ public void initialiserPartie(){
     int nbaleatoire=generateurAleat.nextInt(2);
     if (nbaleatoire==0){
         joueurCourant=joueur1;
+        
     }
     else{
         joueurCourant=joueur2;
+        
     }
     
     grillepuissance4.afficherGrilleSurConsole();
@@ -65,11 +67,13 @@ public void initialiserPartie(){
 public void debuterPartie(){
     initialiserPartie();
     
+    
     int choix;
     Scanner sc = new Scanner(System.in);
     do{
-        System.out.println(joueurCourant.nombreJetonsRestants);
-        System.out.println(joueurCourant.nombreDesintegrateurs);
+        System.out.println(joueurCourant.Nom+", c'est ton tour!");
+        System.out.println("Il te reste "+joueurCourant.nombreJetonsRestants+" jetons");
+        System.out.println("Tu as "+joueurCourant.nombreDesintegrateurs+" désintégrateurs");
         System.out.println("Que voulez vous faire?");
         System.out.println("1/ placer un jeton");
         System.out.println("2/ désintégrer un jeton");
@@ -98,9 +102,11 @@ public void debuterPartie(){
                     grillepuissance4.afficherGrilleSurConsole();
                     if (joueurCourant==ListeJoueurs[0]){
                         joueurCourant=ListeJoueurs[1];
+                        
                     }
                     else{
                         joueurCourant=ListeJoueurs[0];
+                        
                     }
                     break;  
                 case 2 :
@@ -138,17 +144,36 @@ public void debuterPartie(){
                     }
                     break;
                 case 3 :
+                    if (joueurCourant.nombreJetonsRestants==21){
+                        System.out.println("Vous avez tout vos jetons, veuillez saisir une autre action à effectuer");
+                        break;
+                    }
+                    System.out.println("Saisir la ligne du jeton que vous voulez récupérer");
+                    int lignederecuperation = sc.nextInt();
+                    while (lignederecuperation<1||lignederecuperation>6){
+                        System.out.println("Cette ligne n'existe pas, veuillez saisir une colonne valide");
+                        lignederecuperation = sc.nextInt();
+                    }
+                    System.out.println("Saisir la colonne du jeton que vous voulez récupérer");
+                    int colonnederecuperation = sc.nextInt();
+                    while (colonnederecuperation<1||colonnederecuperation>7){
+                        System.out.println("Cette colonne n'existe pas, veuillez saisir une colonne valide");
+                        colonnederecuperation = sc.nextInt();
+                    }
+                    Jeton jeton_a_recuperer=grillepuissance4.recupererJeton(lignederecuperation-1, colonnederecuperation-1);
+                    grillepuissance4.supprimerJeton(lignederecuperation-1, colonnederecuperation-1);
+                    grillepuissance4.tasserGrille(lignederecuperation-1, colonnederecuperation-1);
                     
                     break;
                     
             }
     }while (grillepuissance4.etreGagnantePourJoueur(ListeJoueurs[0])==false&&grillepuissance4.etreGagnantePourJoueur(ListeJoueurs[1])==false&&grillepuissance4.etreRemplie()==false);
     if (grillepuissance4.etreGagnantePourJoueur(ListeJoueurs[1])==true){
-        System.out.println("le joueur 2 a gagné");
+        System.out.println(ListeJoueurs[1].Nom+" a gagné");
         
     }
     if (grillepuissance4.etreGagnantePourJoueur(ListeJoueurs[0])==true){
-        System.out.println("le joueur 1 a gagné");
+        System.out.println(ListeJoueurs[0].Nom+" a gagné");
     }
 }
 }
