@@ -77,6 +77,9 @@ public boolean presenceDesintegrateur(){
         
 }
 public String lireCouleurDuJeton(){
+    if (jetonCourant==null){
+        return "pas de jeton";
+    }
     return jetonCourant.lireCouleur();
 }
 

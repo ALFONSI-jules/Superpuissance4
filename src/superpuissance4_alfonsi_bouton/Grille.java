@@ -19,8 +19,8 @@ public class Grille {
             }
         }
     }
-public boolean ajouterJetonDansColonne(Jeton par_jeton2, int nbcolonne){
-    if(colonneRemplie(nbcolonne)) {
+public boolean ajouterJetonDansColonne(Jeton par_jeton2, Joueur joueurcourant, int nbcolonne){
+    if(colonneRemplie(nbcolonne)==true) {
         return false;
     }
     int indice=5;
@@ -30,6 +30,7 @@ public boolean ajouterJetonDansColonne(Jeton par_jeton2, int nbcolonne){
     Cellules[indice][nbcolonne].jetonCourant=par_jeton2;
     if(Cellules[indice][nbcolonne].presenceDesintegrateur()){
         Cellules[indice][nbcolonne].recupererDesintegrateur();
+        joueurcourant.obtenirDesintegrateur();
         
     }
     if(Cellules[indice][nbcolonne].presenceTrouNoir()){
@@ -42,7 +43,7 @@ public boolean ajouterJetonDansColonne(Jeton par_jeton2, int nbcolonne){
 public boolean etreRemplie(){
     for (int i=0;i<6;i++){
         for (int j=0;j<7;j++){
-            if (Cellules[i][j]==null){
+            if (Cellules[i][j].jetonCourant==null){
                 return false;
             }
         }
@@ -88,35 +89,57 @@ public boolean celluleOccupee(int var1,int var2){
 
 public String lireCouleurDuJeton(int a,int b){
     
-    return Cellules[a][b].jetonCourant.lireCouleur();
+    return Cellules[a][b].lireCouleurDuJeton();
     
 }
 
 public boolean etreGagnantePourJoueur(Joueur nom){
+     
+    String recup_couleur=nom.Couleur;
+    /*for (int i=0;i<3;i++){
+        for (int j=0;j<7;j++){
+            System.out.println(Cellules[i][j].lireCouleurDuJeton());
+        }
+    }
+    for (int i=0;i<6;i++){
+        for (int j=0;j<4;j++){
+            System.out.println(Cellules[i][j].lireCouleurDuJeton());
+        }
+    }
+    for (int i=0;i<3;i++){
+        for (int j=0;j<4;j++){
+            System.out.println(Cellules[i][j].lireCouleurDuJeton());
+        }
+    }
+    for (int i=0;i<3;i++){
+        for (int j=6;j<3;j--){
+            System.out.println(Cellules[i][j].lireCouleurDuJeton());
+        }
+    }*/
     for (int i=0;i<3;i++){
         for (int j=0;j<7;j++){
-            if(lireCouleurDuJeton(i,j).equals(lireCouleurDuJeton(i+1,j)) && lireCouleurDuJeton(i+1,j).equals(lireCouleurDuJeton(i+2,j)) && lireCouleurDuJeton(i+2,j).equals(lireCouleurDuJeton(i+3,j))){
+            if((Cellules[i][j].lireCouleurDuJeton()).equals(Cellules[i+1][j].lireCouleurDuJeton()) && (Cellules[i+1][j].lireCouleurDuJeton()).equals(Cellules[i+2][j].lireCouleurDuJeton()) && (Cellules[i+2][j].lireCouleurDuJeton()).equals(Cellules[i+3][j].lireCouleurDuJeton())&& Cellules[i+1][j].lireCouleurDuJeton().equals(recup_couleur)){
                 return true;
             }
         }
     }
     for (int i=0;i<6;i++){
         for (int j=0;j<4;j++){
-            if(lireCouleurDuJeton(i,j).equals(lireCouleurDuJeton(i,j+1)) && lireCouleurDuJeton(i,j+1).equals(lireCouleurDuJeton(i,j+2)) && lireCouleurDuJeton(i,j+2).equals(lireCouleurDuJeton(i,j+3))){
+            if((Cellules[i][j].lireCouleurDuJeton()).equals(Cellules[i][j+1].lireCouleurDuJeton()) && (Cellules[i][j+1].lireCouleurDuJeton()).equals(Cellules[i][j+2].lireCouleurDuJeton()) && (Cellules[i][j+2].lireCouleurDuJeton()).equals(Cellules[i][j+3].lireCouleurDuJeton()) && Cellules[i][j+2].lireCouleurDuJeton().equals(recup_couleur) ){
                 return true;
             }
         }
     }
     for (int i=0;i<3;i++){
         for (int j=0;j<4;j++){
-            if(lireCouleurDuJeton(i,j).equals(lireCouleurDuJeton(i+1,j+1)) && lireCouleurDuJeton(i+1,j+1).equals(lireCouleurDuJeton(i+2,j+2)) && lireCouleurDuJeton(i+2,j+2).equals(lireCouleurDuJeton(i+3,j+3))){
+            if((Cellules[i][j].lireCouleurDuJeton()).equals(Cellules[i+1][j+1].lireCouleurDuJeton()) && (Cellules[i+1][j+1].lireCouleurDuJeton()).equals(Cellules[i+2][j+2].lireCouleurDuJeton()) && (Cellules[i+2][j+2].lireCouleurDuJeton()).equals(Cellules[i+3][j+3].lireCouleurDuJeton())&& Cellules[i+2][j+2].lireCouleurDuJeton().equals(recup_couleur)){
                 return true;
             }
         }
     }
     for (int i=0;i<3;i++){
         for (int j=6;j>3;j--){
-            if(lireCouleurDuJeton(i,j).equals(lireCouleurDuJeton(i+1,j-1)) && lireCouleurDuJeton(i+1,j-1).equals(lireCouleurDuJeton(i+2,j-2)) && lireCouleurDuJeton(i+2,j-2).equals(lireCouleurDuJeton(i+3,j-3))){
+            if((Cellules[i][j].lireCouleurDuJeton()).equals(Cellules[i+1][j-1].lireCouleurDuJeton()) && (Cellules[i+1][j-1].lireCouleurDuJeton()).equals(Cellules[i+2][j-2].lireCouleurDuJeton()) && (Cellules[i+2][j-2].lireCouleurDuJeton()).equals(Cellules[i+3][j-3].lireCouleurDuJeton())&&Cellules[i][j].lireCouleurDuJeton().equals(recup_couleur)){
                 return true;
             } 
         }
