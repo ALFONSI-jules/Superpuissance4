@@ -49,7 +49,7 @@ public boolean utiliserDesintegrateur(){
     }
     else{
         nombreDesintegrateurs=nombreDesintegrateurs-1;
-        return true;
+        return true;    
     }
 } 
 }

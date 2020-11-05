@@ -95,6 +95,7 @@ public boolean activerTrouNoir(){
         return false;
     }
     else{
+        trouNoir=false;
         supprimerJeton();
         return true;
     }
