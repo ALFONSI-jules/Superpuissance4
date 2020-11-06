@@ -118,7 +118,7 @@ public void debuterPartie(){
                     System.out.println("Saisir la ligne du jeton que vous voulez désintégrer");
                     int lignedesintegrer = sc.nextInt();
                     while (lignedesintegrer<1||lignedesintegrer>6){
-                        System.out.println("Cette ligne n'existe pas, veuillez saisir une colonne valide");
+                        System.out.println("Cette ligne n'existe pas, veuillez saisir une ligne valide");
                         lignedesintegrer = sc.nextInt();
                     }
                     System.out.println("Saisir la colonne du jeton que vous voulez désintégrer");
@@ -128,12 +128,24 @@ public void debuterPartie(){
                         colonnedesintegrer = sc.nextInt();
                     }
                     joueurCourant.utiliserDesintegrateur();
-                    grillepuissance4.supprimerJeton(lignedesintegrer-1, colonnedesintegrer-1);
-                    while (grillepuissance4.supprimerJeton(lignedesintegrer-1, colonnedesintegrer-1)==false){
-                        System.out.println("Veuillez saisir une cellule où un jeton est présent");
+                    
+                    while (joueurCourant.Couleur==grillepuissance4.lireCouleurDuJeton(lignedesintegrer-1, colonnedesintegrer-1)||grillepuissance4.supprimerJeton(lignedesintegrer-1, colonnedesintegrer-1)==false){
+                        System.out.println("Veuillez saisir une cellule où un jeton adverse est présent");
+                        
+                        System.out.println("Saisir la ligne du jeton que vous voulez désintégrer");
                         lignedesintegrer = sc.nextInt();
+                        while (lignedesintegrer<1||lignedesintegrer>6){
+                            System.out.println("Cette ligne n'existe pas, veuillez saisir une ligne valide");
+                            lignedesintegrer = sc.nextInt();
+                        }
+                        System.out.println("Saisir la colonne du jeton que vous voulez désintégrer");
                         colonnedesintegrer = sc.nextInt();
+                        while (colonnedesintegrer<1||colonnedesintegrer>7){
+                            System.out.println("Cette colonne n'existe pas, veuillez saisir une colonne valide");
+                            colonnedesintegrer = sc.nextInt();
+                        }
                     }
+                    grillepuissance4.supprimerJeton(lignedesintegrer-1, colonnedesintegrer-1);
                     grillepuissance4.tasserGrille(lignedesintegrer-1, colonnedesintegrer-1);
                     grillepuissance4.afficherGrilleSurConsole();
                     if (joueurCourant==ListeJoueurs[0]){
@@ -151,7 +163,7 @@ public void debuterPartie(){
                     System.out.println("Saisir la ligne du jeton que vous voulez récupérer");
                     int lignederecuperation = sc.nextInt();
                     while (lignederecuperation<1||lignederecuperation>6){
-                        System.out.println("Cette ligne n'existe pas, veuillez saisir une colonne valide");
+                        System.out.println("Cette ligne n'existe pas, veuillez saisir une ligne valide");
                         lignederecuperation = sc.nextInt();
                     }
                     System.out.println("Saisir la colonne du jeton que vous voulez récupérer");
@@ -160,9 +172,32 @@ public void debuterPartie(){
                         System.out.println("Cette colonne n'existe pas, veuillez saisir une colonne valide");
                         colonnederecuperation = sc.nextInt();
                     }
+                    while (grillepuissance4.lireCouleurDuJeton(lignederecuperation-1, colonnederecuperation-1)!=joueurCourant.Couleur||grillepuissance4.supprimerJeton(lignederecuperation-1, colonnederecuperation-1)==false){
+                        System.out.println("Veuillez saisir une cellule contenant un de vos jetons");
+                        System.out.println("Saisir la ligne du jeton que vous voulez récupérer");
+                        lignederecuperation = sc.nextInt();
+                        while (lignederecuperation<1||lignederecuperation>6){
+                            System.out.println("Cette ligne n'existe pas, veuillez saisir une ligne valide");
+                            lignederecuperation = sc.nextInt();
+                        }
+                        System.out.println("Saisir la colonne du jeton que vous voulez désintégrer");
+                        colonnederecuperation = sc.nextInt();
+                        while (colonnederecuperation<1||colonnederecuperation>7){
+                            System.out.println("Cette colonne n'existe pas, veuillez saisir une colonne valide");
+                            colonnederecuperation = sc.nextInt();
+                        }
+                    }
                     Jeton jeton_a_recuperer=grillepuissance4.recupererJeton(lignederecuperation-1, colonnederecuperation-1);
                     grillepuissance4.supprimerJeton(lignederecuperation-1, colonnederecuperation-1);
                     grillepuissance4.tasserGrille(lignederecuperation-1, colonnederecuperation-1);
+                    joueurCourant.ajouterJeton(jeton_a_recuperer);
+                    grillepuissance4.afficherGrilleSurConsole();
+                    if (joueurCourant==ListeJoueurs[0]){
+                        joueurCourant=ListeJoueurs[1];
+                    }
+                    else{
+                        joueurCourant=ListeJoueurs[0];
+                    }
                     
                     break;
                     

@@ -63,11 +63,12 @@ public void viderGrille(){
 public void afficherGrilleSurConsole(){
     for (int i=0;i<6;i++){
         for (int j=0;j<7;j++){
-            if (Cellules[i][j].desintegrateur==true){
-                System.out.print(" D ");
-            }
-            else if (Cellules[i][j].trouNoir==true){
+            
+            if (Cellules[i][j].trouNoir==true){
                 System.out.print(" T ");
+            }
+            else if (Cellules[i][j].desintegrateur==true){
+                System.out.print(" D ");
             }
             else if (Cellules[i][j].jetonCourant==null){
                 System.out.print(" N ");
