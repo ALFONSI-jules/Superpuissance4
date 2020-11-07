@@ -34,15 +34,36 @@ public void initialiserPartie(){
     Joueur joueur2=new Joueur(sc.nextLine());
     ListeJoueurs[0]=joueur1;
     ListeJoueurs[1]=joueur2;
-    for (int i=1; i<4;i++){
+    int limite_desint=0;
+    for (int i=0; i<5;i++){
         int ligne_aleat=generateurAleat.nextInt(5);
         int colonne_aleat=generateurAleat.nextInt(6);
-        grillepuissance4.placerTrouNoir(ligne_aleat, colonne_aleat);
-    }
-    for (int i=0;i<5;i++){
+        if (limite_desint<2){
+            if (grillepuissance4.Cellules[ligne_aleat][colonne_aleat].presenceDesintegrateur()==false){
+                grillepuissance4.placerDesintegrateur(ligne_aleat, colonne_aleat);
+                limite_desint=limite_desint+1;
+            }
+            else{
+                i--;
+            }
+        }
+        if (grillepuissance4.Cellules[ligne_aleat][colonne_aleat].presenceTrouNoir()==false){
+            grillepuissance4.placerTrouNoir(ligne_aleat, colonne_aleat);
+        }
+        else{
+            i--;
+        }
+            
+        }
+    for (int i=0;i<3;i++){
         int ligne_aleat1=generateurAleat.nextInt(5);
         int colonne_aleat1=generateurAleat.nextInt(6);
-        grillepuissance4.placerDesintegrateur(ligne_aleat1, colonne_aleat1);
+        if (grillepuissance4.Cellules[ligne_aleat1][colonne_aleat1].presenceDesintegrateur()==false && grillepuissance4.Cellules[ligne_aleat1][colonne_aleat1].presenceTrouNoir()==false){
+            grillepuissance4.placerDesintegrateur(ligne_aleat1, colonne_aleat1);
+        }
+        else{
+            i--;
+        }
     }
     attribuerCouleursAuxJoueurs();
     for (int i=0;i<21;i++){

@@ -53,9 +53,14 @@ public boolean etreRemplie(){
 public void viderGrille(){
     for (int i=0;i<6;i++){
         for (int j=0;j<7;j++){
-            Cellules[i][j].jetonCourant=null;
-                
             
+            Cellules[i][j].jetonCourant=null;
+            if (Cellules[i][j].presenceTrouNoir()==true){
+                Cellules[i][j].trouNoir=false;
+            }
+            if (Cellules[i][j].presenceDesintegrateur()==true){
+                Cellules[i][j].desintegrateur=false;
+            } 
         }
     }
 }
