@@ -20,8 +20,18 @@ public class Partie {
     
     
 public void attribuerCouleursAuxJoueurs(){
-    ListeJoueurs[0].affecterCouleur("rouge");
-    ListeJoueurs[1].affecterCouleur("jaune");
+    Random generateurAleat = new Random();
+    int nb_couleur_aleat=generateurAleat.nextInt(2);
+    if (nb_couleur_aleat==0){
+        ListeJoueurs[0].affecterCouleur("rouge");
+        ListeJoueurs[1].affecterCouleur("jaune");
+    }
+    else{
+        ListeJoueurs[1].affecterCouleur("rouge");
+        ListeJoueurs[0].affecterCouleur("jaune");
+        
+    }
+    
 }
 public void initialiserPartie(){
     grillepuissance4.viderGrille();
@@ -66,6 +76,10 @@ public void initialiserPartie(){
         }
     }
     attribuerCouleursAuxJoueurs();
+    System.out.println("");
+    System.out.println(joueur1.Nom+" possède les jetons de couleurs "+joueur1.Couleur);
+    System.out.println(joueur2.Nom+" possède les jetons de couleurs "+joueur2.Couleur);
+    System.out.println("");
     for (int i=0;i<21;i++){
         joueur1.ajouterJeton(new Jeton(joueur1.Couleur));
         
@@ -92,9 +106,13 @@ public void debuterPartie(){
     int choix;
     Scanner sc = new Scanner(System.in);
     do{
+        System.out.println("");
         System.out.println(joueurCourant.Nom+", c'est ton tour!");
+        System.out.println("");
         System.out.println("Il te reste "+joueurCourant.nombreJetonsRestants+" jetons");
+        System.out.println("");
         System.out.println("Tu as "+joueurCourant.nombreDesintegrateurs+" désintégrateurs");
+        System.out.println("");
         System.out.println("Que voulez vous faire?");
         System.out.println("1/ placer un jeton");
         System.out.println("2/ désintégrer un jeton");
