@@ -1,7 +1,7 @@
-    /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/*
+Alfonsi Jules
+Bouton Claire
+TP3 
  */
 package superpuissance4_alfonsi_bouton;
 
@@ -9,15 +9,18 @@ package superpuissance4_alfonsi_bouton;
  *
  * @author jalfonsi
  */
-public class Joueur {
+// classe joueur : décrit un joueur
+
+public class Joueur {//Attributs
     String Nom;
     String Couleur;
     Jeton [] ListeJetons = new Jeton [21];
     int nombreDesintegrateurs;
     int nombreJetonsRestants;
             
+// Methodes :
     
-public Joueur (String par_nom){
+public Joueur (String par_nom){// constructeur
     Nom=par_nom;
 }
 
@@ -26,10 +29,10 @@ public void affecterCouleur(String par_couleur){
 }
 
 public boolean ajouterJeton(Jeton par_jeton){
-    if (nombreJetonsRestants >=21){
+    if (nombreJetonsRestants >=21){// on ne peut pas posseder plus de 21 jetons
         return false;
     }
-    else{
+    else{// ajoute le jeton passé en parametre a la liste des jetons
         ListeJetons[nombreJetonsRestants]=par_jeton ;
         nombreJetonsRestants++;
         return true;
@@ -47,7 +50,7 @@ public boolean utiliserDesintegrateur(){
     if (nombreDesintegrateurs==0){
         return false;
     }
-    else{
+    else{//décrémente le nombre de désintégrateurs et confirme l’utilisation de ce dernier
         nombreDesintegrateurs=nombreDesintegrateurs-1;
         return true;    
     }

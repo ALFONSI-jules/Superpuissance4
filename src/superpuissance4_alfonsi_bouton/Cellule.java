@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Alfonsi Jules
+Bouton Claire
+TP3 
  */
 package superpuissance4_alfonsi_bouton;
 
@@ -9,53 +9,56 @@ package superpuissance4_alfonsi_bouton;
  *
  * @author jalfonsi
  */
-public class Cellule {
+
+// classe cellule : decrit une des 42 cases de la grille
+public class Cellule {//Attributs
     Jeton jetonCourant;
     boolean trouNoir;
     boolean desintegrateur;
     
-public Cellule(){
+// Methodes :
+    
+public Cellule(){// constructeur
     jetonCourant=null;
     trouNoir = false;
     desintegrateur=false;
 }
 
 public boolean affecterJeton(Jeton par_jeton1){
-    if (jetonCourant !=null){
+    if (jetonCourant !=null){// jeton deja present
         return false;
-    }else{
+    }else{// ajoute le jeton en parametre a la cellule
         jetonCourant=par_jeton1;
         return true;
-    }
-    
+    }   
 }
 public Jeton recupererJeton(){
     return jetonCourant;
 }
 
 public boolean supprimerJeton(){
-    if (jetonCourant == null){
+    if (jetonCourant == null){// pas de jetons present
         return false;
     }
-    else{
+    else{// supprime le jeton
         jetonCourant=null;
         return true;
     }
 }
 public boolean placerTrouNoir(){
-    if (trouNoir==true){
+    if (trouNoir==true){// trou noir deja present
         return false;
     }
-    else{
+    else{// place un trou noir
         trouNoir=true;
         return true;
     }
 }
 public boolean placerDesintegrateur(){
-    if(desintegrateur==true){
+    if(desintegrateur==true){// desintegrateur deja present
         return false;
     }
-    else{
+    else{// place un desintegrateur
         desintegrateur=true;
         return true;
     }
@@ -77,10 +80,10 @@ public boolean presenceDesintegrateur(){
         
 }
 public String lireCouleurDuJeton(){
-    if (jetonCourant==null){
+    if (jetonCourant==null){ // Si pas de jetons, il n'y a pas de couleurs et on renvoie "pas de jeton"
         return "pas de jeton";
     }
-    return jetonCourant.lireCouleur();
+    return jetonCourant.lireCouleur(); //Sinon, on renvoie la couleur du jeton présent
 }
 
 public boolean recupererDesintegrateur(){
